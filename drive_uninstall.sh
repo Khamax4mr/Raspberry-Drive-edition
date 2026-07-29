@@ -53,6 +53,17 @@ _main() {
   unset "$RASPBERRY_DRIVE_PATH"
   source ~/.bashrc
 
+  # remove auto storage service
+  _echo_info "removing auto storage management service ..."
+  rm "/etc/systemd/system/raspberry-drive@.service"
+  systemctl daemon-reload
+
+  # remove auto device rule
+  _echo_info "removing auto device handling rule ..."
+  rm "/etc/udev/rules.d/99-raspberry-drive.rules"
+  udevadm control --reload-rules
+  udevadm trigger
+
   _echo_info "raspberry-drive successfully uninstalled!"
 }
 

@@ -93,6 +93,18 @@ _main() {
   printf "%s" "RASPBERRY_DRIVE_PATH=\"$BASE_PATH\"" >> /etc/environment
   source ~/.bashrc
 
+  # run auto storage service
+  _echo_info "setting auto storage management service ..."
+  cp template/raspberry-drive@.service /etc/systemd/system
+  sed -i "7iEnvironment=\"RASPBERRY_DRIVE_PATH=$BASE_PATH\"" /etc/systemd/system/raspberry-drive@.service
+  systemctl daemon-reload
+
+  # run auto device rule
+  _echo_info "setting auto device handling rule ..."
+  cp template/99-raspberry-drive.rules /etc/udev/rules.d
+  udevadm control --reload-rules
+  udevadm trigger
+
   _echo_info "raspberry-drive successfully installed!"
 }
 

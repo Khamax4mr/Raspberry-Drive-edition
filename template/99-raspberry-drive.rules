@@ -1,0 +1,1 @@
+ACTION=="add", SUBSYSTEM=="block", ENV{DEVTYPE}=="disk", ENV{ID_BUS}=="usb", KERNEL=="sd*", ENV{SYSTEMD_WANTS}="raspberry-drive@create-%k.service"
