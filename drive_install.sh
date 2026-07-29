@@ -73,7 +73,7 @@ _main() {
 
   # get package
   _echo_info "installing related package ..."
-  # apt-get install -qq -y <package>
+  apt-get install -qq -y jq
 
   # create drive base
   if [[ -e "$BASE_PATH" ]]; then
@@ -90,7 +90,7 @@ _main() {
   # export drive path
   _echo_info "exporting raspberry-drive path ..."
   sed -i '/RASPBERRY_DRIVE_PATH/d' /etc/environment
-  echo "RASPBERRY_DRIVE_PATH=\"$BASE_PATH\"" >> /etc/environment
+  printf "%s" "RASPBERRY_DRIVE_PATH=\"$BASE_PATH\"" >> /etc/environment
   source /etc/environment
 
   _echo_info "raspberry-drive successfully installed!"
