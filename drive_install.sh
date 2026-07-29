@@ -91,7 +91,7 @@ _main() {
   _echo_info "exporting raspberry-drive path ..."
   sed -i '/RASPBERRY_DRIVE_PATH/d' /etc/environment
   printf "%s" "RASPBERRY_DRIVE_PATH=\"$BASE_PATH\"" >> /etc/environment
-  source /etc/environment
+  source ~/.bashrc
 
   _echo_info "raspberry-drive successfully installed!"
 }

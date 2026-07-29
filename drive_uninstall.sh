@@ -51,7 +51,7 @@ _main() {
   _echo_info "removing raspberry-drive path ..."
   sed -i '/RASPBERRY_DRIVE_PATH/d' /etc/environment
   unset "$RASPBERRY_DRIVE_PATH"
-  source /etc/environment
+  source ~/.bashrc
 
   _echo_info "raspberry-drive successfully uninstalled!"
 }
